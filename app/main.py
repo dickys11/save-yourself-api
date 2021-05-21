@@ -16,11 +16,11 @@ def getApi():
 app = FastAPI()
 
 @app.get('/getstatus/{uname}/{numtweet}', response_model=schemas.Tweet)
-def getStatus(uname: str, numtweet: int, api = Depends(getApi)):
+def getStatus(uname: str, num_page: int, api = Depends(getApi)):
     username = uname
     tweet_list = []
     
-    num_page = math.ceil(numtweet/20)
+    num_page
     for page in range(num_page):
         user_timeline = api.user_timeline(uname, page=page, tweet_mode="extended")
         tweet_list += functions.makeList(user_timeline)
